@@ -1,4 +1,4 @@
-from temperature import Temperature
+from temperature.temperature import Temperature
 
 if __name__ == "__main__":
     my_app = Temperature()
