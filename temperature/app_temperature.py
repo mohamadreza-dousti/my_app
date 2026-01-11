@@ -1,23 +1,21 @@
 from temperature.operator_temp import Change
 
 class AppTemperature():
-    f = 0
-    t = 0
-    entry = 0
     def __init__(self):
-        self.operator = Change(AppTemperature.f, AppTemperature.t, AppTemperature.entry)
+        self.f = 0
+        self.t = 0
+        self.entry = 0
+        self.operator = Change(self.f, self.t, self.entry)
 
     def apply(self, aply, result):
-        entry = float(aply.get())
-        ansewr = self.operator.change(AppTemperature.f, AppTemperature.t, entry)
+        self.entry = float(aply.get())
+        ansewr = self.operator.change(self.f, self.t, self.entry)
         result.configure(text=ansewr, text_color='black')
 
-    @classmethod
-    def get_check_from(cls, value):
-        cls.f = value
+    def get_check_from(self, value):
+        self.f = value
 
-    @classmethod
-    def get_check_to(cls, value):
-        cls.t = value  
+    def get_check_to(self, value):
+        self.t = value
     
     
