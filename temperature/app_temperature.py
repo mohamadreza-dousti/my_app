@@ -5,11 +5,12 @@ class AppTemperature():
         self.f = 0
         self.t = 0
         self.entry = 0
-        self.operator = Change(self.f, self.t, self.entry)
 
     def apply(self, aply, result):
-        self.entry = float(aply.get())
-        ansewr = self.operator.change(self.f, self.t, self.entry)
+        self.operator = Change(self.f, self.t, self.entry)
+        if not aply.get() == '':
+            self.entry = float(aply.get())
+        ansewr = self.operator.change()
         result.configure(text=ansewr, text_color='black')
 
     def get_check_from(self, value):
