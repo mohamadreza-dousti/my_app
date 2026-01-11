@@ -7,9 +7,9 @@ class AppTemperature():
         self.entry = 0
 
     def apply(self, aply, result):
-        self.operator = Change(self.f, self.t, self.entry)
         if not aply.get() == '':
             self.entry = float(aply.get())
+        self.operator = Change(self.f, self.t, self.entry)
         ansewr = self.operator.change()
         result.configure(text=ansewr, text_color='black')
 
