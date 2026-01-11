@@ -1,11 +1,10 @@
 from claculator.operations import Operate
 
 class AppCalculator():
-    numbers = []
-    operator = 0
-
     def __init__(self):
-        pass
+        self.numbers = []
+        self.operator = 0
+        self.do = Get()
 
     def btn_number(self, entry, button):
         self.text = entry.cget('text')
@@ -38,37 +37,37 @@ class AppCalculator():
         self.text_btn = button.cget('text')
         self.text_res = res.cget('text')
         self.number = float(self.text)
-        AppCalculator.numbers.append(self.number)
+        self.numbers.append(self.number)
         entry.configure(text = '')
         if self.text_btn == '+':
-            AppCalculator.operator = 1
+            self.operator = 1
             res.configure(text = f'{self.text_res}' + f'{self.number} +')
         if self.text_btn == '-':
-            AppCalculator.operator = 2
+            self.operator = 2
             res.configure(text = f'{self.text_res}' + f'{self.number} -')
         if self.text_btn == '/':
-            AppCalculator.operator = 3
+            self.operator = 3
             res.configure(text = f'{self.text_res}' + f'{self.number} /')
         if self.text_btn == '*':
-            AppCalculator.operator = 4
+            self.operator = 4
             res.configure(text = f'{self.text_res}' + f'{self.number} *')
         if self.text_btn == '2^--x':
-            AppCalculator.operator = 5
+            self.operator = 5
             res.configure(text = f'{self.text_res}' + f'{self.number} ^rad2')
             self.ansewr = self.operate()
             entry.configure(text = self.ansewr)
         if self.text_btn == 'x^2':
-            AppCalculator.operator = 6
+            self.operator = 6
             res.configure(text = f'{self.text_res}' + f'{self.number} ^2')
             self.ansewr = self.operate()
             entry.configure(text = self.ansewr)
         if self.text_btn == '1/x':
-            AppCalculator.operator = 7
+            self.operator = 7
             res.configure(text = f'1/{self.number}')
             self.ansewr = self.operate()
             entry.configure(text = self.ansewr)
         if self.text_btn == '+/-':
-            AppCalculator.operator = 8
+            self.operator = 8
             res.configure(text = f'')
             self.ansewr = self.operate()
             entry.configure(text = self.ansewr)
@@ -77,20 +76,24 @@ class AppCalculator():
     def btn_quality(self, entry, res):
         self.text = entry.cget('text')
         self.number = float(self.text)
-        AppCalculator.numbers.append(self.number)
+        self.numbers.append(self.number)
         self.text_res = res.cget('text')
         res.configure(text = f'{self.text_res}' + f' {self.number} =')
-        self.ansewr = self.operate()
+        self.ansewr = self.do.operate(self.operator, self.numbers)
         entry.configure(text = self.ansewr)
-        AppCalculator.numbers = []
+        self.numbers = []
     
     def clear_btn(self, entry, res):
         entry.configure(text='')
         res.configure(text='')
-        AppCalculator.numbers = []
-    
-    def operate(self):
+        self.numbers = []
+
+
+class Get():
+    def __init__(self):
         self.obj = Operate()
+
+    def operate(self, operator, numbers):
         swith ={
             1:self.obj.add,
             2:self.obj.sub,
@@ -101,6 +104,6 @@ class AppCalculator():
             7:self.obj.ded,
             8:self.obj.cor
         }
-        fun = swith.get(AppCalculator.operator)
-        self.ansewr = fun(AppCalculator.numbers)
+        fun = swith.get(operator)
+        self.ansewr = fun(numbers)
         return self.ansewr
