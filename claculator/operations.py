@@ -18,7 +18,10 @@ class Operate():
     def div(self, lst):
         self.ansewr = lst[0]
         for i in lst[1:]:
-            self.ansewr /= i
+            if i != 0:
+                self.ansewr /= i
+            else:
+                self.ansewr = 0
         return self.ansewr
     
     def mul(self, lst):
@@ -36,7 +39,11 @@ class Operate():
         return self.ansewr
     
     def ded(self, lst):
-        self.ansewr = 1/lst[0]
+        self.ansewr = lst[0]
+        if self.ansewr != 0:
+            self.ansewr = 1/lst[0]
+        else:
+            self.ansewr = 0
         return self.ansewr
     
     def cor(self, lst):

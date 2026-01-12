@@ -1,4 +1,5 @@
 from claculator.operations import Operate
+import re
 
 class AppCalculator():
     def __init__(self):
@@ -36,7 +37,9 @@ class AppCalculator():
         self.text = entry.cget('text')
         self.text_btn = button.cget('text')
         self.text_res = res.cget('text')
-        self.number = float(self.text)
+        self.number = 0.0
+        if re.fullmatch(r"\d*\.\d*", self.text) or re.fullmatch(r"\d+", self.text):
+            self.number = float(self.text)
         self.numbers.append(self.number)
         entry.configure(text = '')
         if self.text_btn == '+':
@@ -54,32 +57,34 @@ class AppCalculator():
         if self.text_btn == '2^--x':
             self.operator = 5
             res.configure(text = f'{self.text_res}' + f'{self.number} ^rad2')
-            self.ansewr = self.operate()
+            self.ansewr = str(self.do.operate(self.operator, self.numbers))
             entry.configure(text = self.ansewr)
         if self.text_btn == 'x^2':
             self.operator = 6
             res.configure(text = f'{self.text_res}' + f'{self.number} ^2')
-            self.ansewr = self.operate()
+            self.ansewr = str(self.do.operate(self.operator, self.numbers))
             entry.configure(text = self.ansewr)
         if self.text_btn == '1/x':
             self.operator = 7
             res.configure(text = f'1/{self.number}')
-            self.ansewr = self.operate()
+            self.ansewr = str(self.do.operate(self.operator, self.numbers))
             entry.configure(text = self.ansewr)
         if self.text_btn == '+/-':
             self.operator = 8
             res.configure(text = f'')
-            self.ansewr = self.operate()
+            self.ansewr = str(self.do.operate(self.operator, self.numbers))
             entry.configure(text = self.ansewr)
             
 
     def btn_quality(self, entry, res):
         self.text = entry.cget('text')
-        self.number = float(self.text)
+        self.number = 0.0
+        if re.fullmatch(r"\d*\.\d*", self.text) or re.fullmatch(r"\d+", self.text):
+            self.number = float(self.text)
         self.numbers.append(self.number)
         self.text_res = res.cget('text')
         res.configure(text = f'{self.text_res}' + f' {self.number} =')
-        self.ansewr = self.do.operate(self.operator, self.numbers)
+        self.ansewr = str(self.do.operate(self.operator, self.numbers))
         entry.configure(text = self.ansewr)
         self.numbers = []
     
