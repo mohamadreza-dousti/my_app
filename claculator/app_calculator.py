@@ -39,7 +39,10 @@ class AppCalculator():
         self.text_res = res.cget('text')
         self.number = 0.0
         if re.fullmatch(r"\d*\.\d*", self.text) or re.fullmatch(r"\d+", self.text):
-            self.number = float(self.text)
+            if self.text == '.':
+                self.number = 0.0
+            else:
+                self.number = float(self.text)
         self.numbers.append(self.number)
         entry.configure(text = '')
         if self.text_btn == '+':
@@ -80,7 +83,10 @@ class AppCalculator():
         self.text = entry.cget('text')
         self.number = 0.0
         if re.fullmatch(r"\d*\.\d*", self.text) or re.fullmatch(r"\d+", self.text):
-            self.number = float(self.text)
+            if self.text == '.':
+                self.number = 0.0
+            else:
+                self.number = float(self.text)
         self.numbers.append(self.number)
         self.text_res = res.cget('text')
         res.configure(text = f'{self.text_res}' + f' {self.number} =')
