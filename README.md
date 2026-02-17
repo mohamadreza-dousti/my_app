@@ -2,14 +2,19 @@
 Python-Based project
 -----------------------
 Futures:
-  #Temperature convert:
+  Temperature convert:
     . Convert between Celsius, Fahrenheit, and Kelvin
-  #Calculator:
+  Calculator:
     . Calcute basic operations
-  #Modern UI with Customtkinter
-  #OOP
 
-  ----------------------
+-----------------------------
+
+Technologies:
+  . Custom Tkinter 
+  . Regex
+  . OOP 
+
+-----------------------------
 
   How To Run:
     1.Clone the repository
@@ -17,12 +22,12 @@ Futures:
     '''git clone https://github.com/mohamadreza-dousti/my_app.git'''
   2.Install requirements:
     '''Bash
-    '''pip install customtkinter'''
+    '''pip install -r requirements.txt'''
   3.Run the application:
     '''Bash
     '''python main.py'''
 
- -----------------------------
+-----------------------------
 
  Project Struture:
   ├──app
@@ -40,5 +45,6 @@ Futures:
     ├──LICENSE
     ├──main.py
     ├──README.md
+    ├──CHANGELOG.md
 
  
